@@ -7,10 +7,11 @@ on:
 
 env:
   PROJECT_ID: linear-stock-388107
-  GCR_HOSTNAME: gcr.io
+  GCR_HOSTNAME: us-central1-docker.pkg.dev
+  GCR_REGISTRY: noderegistry
   GKE_CLUSTER: gke-cluster
   GKE_ZONE: us-central1-a
-  IMAGE_NAME: app
+  IMAGE_NAME: nodeapp
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:
@@ -31,7 +32,7 @@ jobs:
           docker buildx build \
             --platform linux/amd64 \
             --push \
-            --tag ${{ env.GCR_HOSTNAME }}/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
+            --tag ${{ env.GCR_HOSTNAME }}/${{GCR_REGISTRY}}/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
 
   deploy:
     name: Deploy to GKE
