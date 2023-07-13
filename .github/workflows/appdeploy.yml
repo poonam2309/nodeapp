@@ -35,7 +35,7 @@ jobs:
         
       - name: Log in to Docker Registry
         run: |
-          echo ${{ secrets.GCP_SA_KEY }} | base64 --decode > /tmp/key.json
+          echo ${{ secrets.GCP_SA_KEY }} | base64 --decode
           #gcloud auth activate-service-account --key-file=/tmp/key.json
           #echo "Logging in to Docker Registry..."
           #echo ${{ secrets.GCP_SA_KEY }}
