@@ -80,12 +80,12 @@ jobs:
             echo "::set-output name=deployment_exists::false"
           fi
 
-      - name: Deploy to GKE
+      - name: New Deployment
         if: steps.check_deployment.outputs.deployment_exists == 'false'
         run: kubectl apply -f deployment.yaml -n app
 
       - name: Update Deployment
         if: steps.check_deployment.outputs.deployment_exists == 'true'
         run: |
-          kubectl set image deployment/${{ env.IMAGE_NAME }} ${{ env.IMAGE_NAME }}=${{ env.GCR_HOSTNAME }}/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} -n app
+          kubectl set image deployment/${{ env.IMAGE_NAME }} ${{ env.IMAGE_NAME }}=${{ env.GCR_HOSTNAME }}/${{ env.PROJECT_ID }}/${{env.GCR_REGISTRY}}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} -n app
 
