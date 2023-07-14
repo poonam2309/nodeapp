@@ -45,5 +45,4 @@ metadata:
 type: Opaque
 data:
   # Add your secret key-value pairs here (base64-encoded)
-  SECRET_KEY: your-secret-key
-
+  SECRET_KEY: TXlMb3ZlUG9vbmFtCg==
