@@ -71,8 +71,10 @@ jobs:
            gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }}
 
       - name: Creating Public IP for LoadBlancer
+        continue-on-error: true
         run: | 
            gcloud compute addresses create app-ip --global    
+        
 
       - name: Check Deployment Existence
         id: check_deployment
