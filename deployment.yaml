@@ -48,46 +48,44 @@ data:
   SECRET_KEY: TXlMb3ZlUG9vbmFtCg==
 
 ---
+
 apiVersion: v1
-items:
-- apiVersion: v1
-  kind: Service
-  metadata:
-    annotations:
-      cloud.google.com/neg: '{"ingress":true}'
-    labels:
-      app: app
-    name: app
-    namespace: app
-  spec:
-    ports:
-    - name: "3000"
-      port: 3000
-      protocol: TCP
-      targetPort: 3000
-    selector:
-      app: app
-    type: ClusterIP
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  labels:
+    app: app
+  name: app
+  namespace: app
+spec:
+  ports:
+  - name: "3000"
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: app
+  type: ClusterIP
 ---
-apiVersion: v1
-items:
-- apiVersion: networking.k8s.io/v1
-  kind: Ingress
-  metadata:
-    annotations:
-      kubernetes.io/ingress.class: gce
-      kubernetes.io/ingress.global-static-ip-name: app-ip
-    generation: 4
-    name: app
-    namespace: app
-  spec:
-    rules:
-    - http:
-        paths:
-        - backend:
-            service:
-              name: app
-              port:
-                number: 3000
-          path: /
-          pathType: Prefix
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: gce
+    kubernetes.io/ingress.global-static-ip-name: app-ip
+  generation: 4
+  name: app
+  namespace: app
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: app
+            port:
+              number: 3000
+        path: /
+        pathType: Prefix
