@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-app
+  name: app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: node-app
+      app: app
   template:
     metadata:
       labels:
-        app: node-app
+        app: app
     spec:
       containers:
-        - name: node-app
-          image: your-nodejs-image:latest
+        - name: app
+          image: us.gcr.io/linear-stock-388107/app-engine-tmp/app:48c27fa0833e423560458673de4e5a907c215461
           ports:
             - containerPort: 3000
           envFrom:
             - configMapRef:
-                name: node-app-config
+                name: app-config
             - secretRef:
-                name: node-app-secrets
+                name: app-secrets
           volumeMounts:
             - name: app-storage
               mountPath: /app/storage
@@ -32,7 +32,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: node-app-config
+  name: app-config
 data:
   # Add your configuration key-value pairs here
   DATABASE_URL: your-database-url
@@ -41,7 +41,7 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: node-app-secrets
+  name: app-secrets
 type: Opaque
 data:
   # Add your secret key-value pairs here (base64-encoded)
