@@ -68,6 +68,26 @@ items:
     selector:
       app: app
     type: ClusterIP
-kind: List
-metadata:
-  resourceVersion: ""
+---
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      kubernetes.io/ingress.class: gce
+      kubernetes.io/ingress.global-static-ip-name: app-ip
+    generation: 4
+    name: app
+    namespace: app
+  spec:
+    rules:
+    - http:
+        paths:
+        - backend:
+            service:
+              name: app
+              port:
+                number: 3000
+          path: /
+          pathType: Prefix
