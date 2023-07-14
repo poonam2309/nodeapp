@@ -46,3 +46,28 @@ type: Opaque
 data:
   # Add your secret key-value pairs here (base64-encoded)
   SECRET_KEY: TXlMb3ZlUG9vbmFtCg==
+
+---
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      cloud.google.com/neg: '{"ingress":true}'
+    labels:
+      app: app
+    name: app
+    namespace: app
+  spec:
+    ports:
+    - name: "3000"
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+    selector:
+      app: app
+    type: ClusterIP
+kind: List
+metadata:
+  resourceVersion: ""
