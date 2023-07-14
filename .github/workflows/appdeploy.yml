@@ -71,7 +71,7 @@ jobs:
           #echo ${GOOGLE_APPLICATION_CREDENTIALS} | base64 --decode > /tmp/key.json
           #gcloud auth activate-service-account --key-file=/tmp/key.json
           #gcloud auth configure-docker
-          find / -name gke-gcloud-auth-plugin
+          ls /usr/bin/gke-gcloud-auth-plugin
 
       - name: Deploy to GKE
         run: |
