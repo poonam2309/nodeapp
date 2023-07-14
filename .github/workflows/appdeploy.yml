@@ -35,7 +35,7 @@ jobs:
         
       - name: Log in to Docker Registry
         run: |
-            cat ${{ secrets.GCP_SA_KEY }} 
+         gcloud auth activate-service-account --key-file=sa.json
 
       - name: Build Docker Image
         run: |
