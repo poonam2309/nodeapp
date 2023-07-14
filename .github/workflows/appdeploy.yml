@@ -38,6 +38,11 @@ jobs:
          gcloud auth activate-service-account --key-file=sa.json
          gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us.gcr.io  
 
+
+      - name: Download packages
+        run: |
+           npm install
+
       - name: Build Docker Image
         run: |
           docker buildx create --use

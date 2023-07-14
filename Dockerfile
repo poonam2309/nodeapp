@@ -2,7 +2,7 @@ FROM node:18
 # Create app directory
 WORKDIR /usr/src/app
 # Copy Nodejs source code into Docker image
-COPY app.js ./
+COPY . ./
 # Install node js dependencies
 #RUN npm install
 # Expose nodejs application port outside of the container 
