@@ -67,10 +67,11 @@ jobs:
 
       - name: Configure Docker to use GCR
         run: |
-          gke-gcloud-auth-plugin
+          #gke-gcloud-auth-plugin
           #echo ${GOOGLE_APPLICATION_CREDENTIALS} | base64 --decode > /tmp/key.json
           #gcloud auth activate-service-account --key-file=/tmp/key.json
-          3gcloud auth configure-docker
+          #gcloud auth configure-docker
+          find / -name gke-gcloud-auth-plugin
 
       - name: Deploy to GKE
         run: |
