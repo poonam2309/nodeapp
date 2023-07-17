@@ -104,7 +104,7 @@ jobs:
       - name: New Deployment
         if: steps.check_deployment.outputs.deployment_exists == 'false'
         run: |
-           kubectl apply -f deployment.yaml -n app 
+             kubectl apply -f deployment.yaml -n app 
 
 
       - name: Update Deployment
