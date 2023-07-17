@@ -134,5 +134,5 @@ jobs:
            
       - name: release ip
         run: |
-           gcloud compute addresses release app-ip --global
+           gcloud compute addresses delete app-ip
 
