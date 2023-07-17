@@ -40,7 +40,7 @@ metadata:
 data:
   # Add your configuration key-value pairs here
   DATABASE_URL: abc.example.com/mydb
-  API_KEY: abc-key
+  
 ---
 apiVersion: v1
 kind: Secret
@@ -51,7 +51,8 @@ metadata:
 type: Opaque
 data:
   # Add your secret key-value pairs here (base64-encoded)
-  SECRET_KEY: TXlMb3ZlUG9vbmFtCg==
+  DB_USER: dXNlcjEK
+  DB_PASSWORD: cGFzc3dvcmQxCg==
 
 ---
 apiVersion: v1
