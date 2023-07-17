@@ -3,14 +3,26 @@ name: Build and Deploy
 on:
   workflow_dispatch:
    inputs:
-      trigger:
-        description: 'Trigger the workflow manually'
-        required: true
-        default: 'none'
-        options:
-          - 'build'
-          - 'deploy'
-          - 'delete'
+      build:
+        description: 'Run Job build'
+        required: false
+        default: false
+      deploy:
+        description: 'Run Job deploy'
+        required: false
+        default: false
+      delete:
+        description: 'Run Job delete'
+        required: false
+        default: false
+     # trigger:
+     #   description: 'Trigger the workflow manually'
+     #   required: true
+     #  default: 'none'
+     #  options:
+    #    - 'build'
+    #      - 'deploy'
+     #     - 'delete'
   #push:
    # branches:
    #   - main
