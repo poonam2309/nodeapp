@@ -6,7 +6,11 @@ on:
       trigger:
         description: 'Trigger the workflow manually'
         required: true
-        default: 'Run'
+        default: 'none'
+        options:
+          - 'build'
+          - 'deploy'
+          - 'delete'
   #push:
    # branches:
    #   - main
