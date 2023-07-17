@@ -27,7 +27,9 @@ spec:
               mountPath: /app/storage
       volumes:
         - name: app-storage
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: app-dir
+
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -53,17 +55,36 @@ data:
 
 ---
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nodeapp-pv
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: gke-pv
+    fsType: ext4
+---
+
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: node-dir
+  name: app-pvc
   labels:
     app: app
 spec:
+  storageClassName: standard
+  volumeName: nodeapp-pv
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
 ---
 
 apiVersion: v1
