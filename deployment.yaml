@@ -28,7 +28,7 @@ spec:
       volumes:
         - name: app-storage
           persistentVolumeClaim:
-            claimName: app-dir
+            claimName: app-pvc
 
 ---
 apiVersion: v1
