@@ -131,6 +131,7 @@ jobs:
            kubectl delete all --selector=app=app -n app
            kubectl delete deploy app -n app
            kubectl delete ing app -n app
+           continue-on-error: true
            
       - name: release ip
         run: |
