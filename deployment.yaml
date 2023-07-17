@@ -39,8 +39,8 @@ metadata:
     app: app
 data:
   # Add your configuration key-value pairs here
-  DATABASE_URL: your-database-url
-  API_KEY: your-api-key
+  DATABASE_URL: abc.example.com/mydb
+  API_KEY: abc-key
 ---
 apiVersion: v1
 kind: Secret
