@@ -1,11 +1,18 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodeapp
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  labels:
+    app: app
+  name: app
+  namespace: app
 spec:
-  selector:
-    app.kubernetes.io/name: nodeapp
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+  - name: "3000"
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: app
+  type: ClusterIP
