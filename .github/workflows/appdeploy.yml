@@ -15,6 +15,13 @@ on:
         description: 'Run Job delete'
         required: false
         default: false
+      selected_job:
+        description: 'Select job to run'
+        required: true
+        options:
+          - build
+          - deploy
+          - delete
      # trigger:
      #   description: 'Trigger the workflow manually'
      #   required: true
