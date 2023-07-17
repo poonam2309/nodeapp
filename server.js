@@ -7,7 +7,7 @@ const app = express();
 const databaseUrl = process.env.DATABASE_URL;
 const apiKey = process.env.API_KEY;
 
-// Accessing secret values from the Secrets
+// Accessing secret values from the Secrets hkjhjk
 const secretKey = process.env.SECRET_KEY;
 
 // Using the volume to store and read data
