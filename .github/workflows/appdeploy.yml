@@ -128,5 +128,6 @@ jobs:
       - name: Delete app componenets
         continue-on-error: false
         run: | 
-           kubectl delete all --selector=app=app -n app   
+           kubectl delete all --selector=app=app -n app
+           kubectl delete deploy app -n app
 
