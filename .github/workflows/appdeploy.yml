@@ -28,6 +28,7 @@ jobs:
   build:
     name: Build Docker Image
     runs-on: self-hosted
+    if: ${{ github.event.inputs.build == 'true' }}
 
     steps:
       - name: Checkout Repository
@@ -66,6 +67,7 @@ jobs:
     name: Deploy to GKE
     needs: build
     runs-on: self-hosted
+    if: ${{ github.event.inputs.deploy == 'true' }}
 
     steps:
       - name: Set up Google Cloud SDK
@@ -107,6 +109,7 @@ jobs:
   delete:
     name: Delete componenets
     runs-on: self-hosted
+    if: ${{ github.event.inputs.delete == 'true' }}
 
     steps:
       - name: Set up Google Cloud SDK
