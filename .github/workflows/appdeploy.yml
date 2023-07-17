@@ -7,9 +7,9 @@ on:
         description: 'Trigger the workflow manually'
         required: true
         default: 'Run'
-  push:
-    branches:
-      - main
+  #push:
+   # branches:
+   #   - main
 
 env:
   PROJECT_ID: linear-stock-388107
