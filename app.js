@@ -5,17 +5,19 @@ const app = express();
 
 // Accessing environment variables from the ConfigMap
 const databaseUrl = process.env.DATABASE_URL;
-const apiKey = process.env.API_KEY;
 
 // Accessing secret values from the Secrets
-const secretKey = process.env.SECRET_KEY;
+const db_user = process.env.DB_USER;
+
+const db_password = process.env.DB_PASSWORD;
 
 // Using the volume to store and read data
 const storagePath = '/app/storage/data.txt';
 
+
 app.get('/', (req, res) => {
   // Perform operations using the environment variables, secrets, and volume
-  const data = `Database URL: ${databaseUrl}\nAPI Key: ${apiKey}\nSecret Key: ${secretKey}\n`;
+  const data = `Database URL: ${databaseUrl}\nUser Credentials: ${db_user}\nDB Password : ${db_password}\n`;
 
   fs.appendFile(storagePath, data, (err) => {
     if (err) {
