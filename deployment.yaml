@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: us.gcr.io/linear-stock-388107/app-engine-tmp/app:48c27fa0833e423560458673de4e5a907c215461
+          image: us.gcr.io/linear-stock-388107/app-engine-tmp/app:$IMAGE_TAG
           ports:
             - containerPort: 3000
           envFrom:
