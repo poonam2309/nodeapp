@@ -124,7 +124,6 @@ jobs:
       - name: Login in GKE
         run: |
            gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }}
-           gcloud compute addresses release app-ip --global
 
       - name: Delete app componenets
         continue-on-error: false
@@ -132,4 +131,8 @@ jobs:
            kubectl delete all --selector=app=app -n app
            kubectl delete deploy app -n app
            kubectl delete ing app -n app
+           
+      - name: release ip
+        run: |
+           gcloud compute addresses release app-ip --global
 
