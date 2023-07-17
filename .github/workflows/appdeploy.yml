@@ -130,6 +130,8 @@ jobs:
         run: | 
            kubectl delete all --selector=app=app -n app
            kubectl delete deploy app -n app
+           kubectl delete cm --selector=app=app -n app
+           kubectl delete secret --selector=app=app -n app
            kubectl delete ing app -n app
            continue-on-error: true
            
