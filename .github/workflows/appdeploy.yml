@@ -100,7 +100,10 @@ jobs:
 
       - name: New Deployment
         if: steps.check_deployment.outputs.deployment_exists == 'false'
-        run: kubectl apply -f deployment.yaml -n app
+        run: |
+           kubectl apply -f deployment.yaml -n app
+           kubectl set image deployment/${{ env.IMAGE_NAME }} ${{ env.IMAGE_NAME }}=${{ env.GCR_HOSTNAME }}/${{ env.PROJECT_ID }}/${{env.GCR_REGISTRY}}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} -n app
+
 
       - name: Update Deployment
         if: steps.check_deployment.outputs.deployment_exists == 'true'
