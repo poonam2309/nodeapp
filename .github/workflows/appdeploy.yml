@@ -7,11 +7,11 @@ on:
       build:
         description: 'Run Job build'
         required: false
-        default: false
+        default: true
       deploy:
         description: 'Run Job deploy'
         required: false
-        default: false
+        default: true
       delete:
         description: 'Run Job delete'
         required: false
