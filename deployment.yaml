@@ -3,11 +3,15 @@ kind: Deployment
 metadata:
   name: app
   namespace: app
-  labels:
-    app: app
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: app
   template:
+    metadata:
+      labels:
+        app: app
     spec:
       containers:
         - name: app
