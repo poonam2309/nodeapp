@@ -99,4 +99,26 @@ jobs:
         if: steps.check_deployment.outputs.deployment_exists == 'true'
         run: |
           kubectl set image deployment/${{ env.IMAGE_NAME }} ${{ env.IMAGE_NAME }}=${{ env.GCR_HOSTNAME }}/${{ env.PROJECT_ID }}/${{env.GCR_REGISTRY}}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} -n app
+    
+  delete:
+    name: Delete componenets
+    runs-on: self-hosted
+
+    steps:
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.5.0
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+
+      - name: Login in GKE
+        run: |
+           gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }}
+
+      - name: Delete app componenets
+        continue-on-error: false
+        run: | 
+           kubectl delete all --selector=app=app -n app   
 
