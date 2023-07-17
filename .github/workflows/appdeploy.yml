@@ -23,6 +23,8 @@ env:
   GKE_ZONE: us-central1-a
   IMAGE_NAME: app
   IMAGE_TAG: ${{ github.sha }}
+  INGRESS_DELETE: FALSE
+
 
 jobs:
   build:
@@ -128,10 +130,14 @@ jobs:
         run: |
            gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }}
 
-      - name: Delete app componenets
+      - name: Delete app components
         continue-on-error: false
-        run: | 
-           kubectl delete all,deploy,cm,secret,ingress --selector=app=app -n app
+        run: |
+          if [[ $INGRESS_DELETE == "TRUE" ]]; then
+            kubectl delete ingress -n app
+          fi
+          kubectl delete all,deploy,cm,secret --selector=app=app -n app
+
            
       - name: release ip
         run: |
