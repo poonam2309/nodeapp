@@ -2,6 +2,11 @@ name: Build and Deploy
 
 on:
   workflow_dispatch:
+   inputs:
+      trigger:
+        description: 'Trigger the workflow manually'
+        required: true
+        default: 'Run'
   push:
     branches:
       - main
