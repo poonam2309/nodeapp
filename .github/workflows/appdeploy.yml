@@ -29,6 +29,7 @@ jobs:
     name: Build Docker Image
     runs-on: self-hosted
     if: ${{ github.event.inputs.build == 'true' }}
+    
 
     steps:
       - name: Checkout Repository
