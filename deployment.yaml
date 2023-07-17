@@ -52,6 +52,19 @@ data:
   SECRET_KEY: TXlMb3ZlUG9vbmFtCg==
 
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: node-dir
+  labels:
+    app: app
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 
 apiVersion: v1
 kind: Service
