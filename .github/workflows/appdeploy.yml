@@ -2,19 +2,15 @@ name: Build and Deploy
 
 on:
   workflow_dispatch:
-   inputs:
-      build:
-        description: 'Run Job build'
-        required: false
-        default: false
-      deploy:
-        description: 'Run Job deploy'
-        required: false
-        default: false
-      delete:
-        description: 'Run Job delete'
-        required: false
-        default: false
+   inputs:      
+      job-to-run:
+        description: 'Select job to run'
+        required: true
+        default: 'all'
+        options:
+          - 'build'
+          - 'deploy'
+          - 'delete'
 env:
   PROJECT_ID: linear-stock-388107
   GCR_HOSTNAME: us.gcr.io
@@ -28,7 +24,7 @@ jobs:
   build:
     name: Build Docker Image
     runs-on: self-hosted
-    if: ${{ github.event.inputs.build == 'true' }}
+    #if: ${{ github.event.inputs.build == 'true' }}
 
     steps:
       - name: Checkout Repository
@@ -67,7 +63,7 @@ jobs:
     name: Deploy to GKE
     needs: build
     runs-on: self-hosted
-    if: ${{ github.event.inputs.deploy == 'true' }}
+    #if: ${{ github.event.inputs.deploy == 'true' }}
 
     steps:
       - name: Set up Google Cloud SDK
@@ -109,7 +105,7 @@ jobs:
   delete:
     name: Delete componenets
     runs-on: self-hosted
-    if: ${{ github.event.inputs.delete == 'true' }}
+    #if: ${{ github.event.inputs.delete == 'true' }}
 
     steps:
       - name: Set up Google Cloud SDK
