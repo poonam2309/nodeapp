@@ -136,7 +136,8 @@ jobs:
           if [[ $INGRESS_DELETE == "TRUE" ]]; then
             kubectl delete ingress -n app
           fi
-          kubectl delete all,deploy,cm,secret --selector=app=app -n app
+          kubectl delete all,cm,secret -l app=app -n app
+          kubectl delete  deploy app  -n app
 
            
       - name: release ip
