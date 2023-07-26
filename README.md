@@ -1,5 +1,5 @@
 # nodejs App
-Node js Sample app for deployment into Kubernetes using multiple resources. This application will read data from configmap and secrets and map the config map and secret data as an environment variable in pod. All evvironemnt variable will be read by the node app and store into a directory which is mount as a pvc into the application pod. 
+Node js sample app for deployment into Kubernetes using multiple resources. This application will read data from configmap and secrets and map the config map and secret data as an environment variable in pod. All evvironemnt variable will be read by the node app and store into a directory which is mount as a pvc into the application pod. 
 
 Below components will be used into this Sample app refer .github/workflows/appdeploy.yaml for application build and deployment steps.  
 
